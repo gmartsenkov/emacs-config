@@ -51,24 +51,21 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
+    ;; Projects
     "p" '(:ignore t :which-key "Projects")
-    "g" '(:ignore t :which-key "Git")
     "t" '(:ignore t :which-key "Toggles")
     ))
 
 (use-package company :ensure t)
-(use-package magit :ensure t)
 (use-package nlinum :ensure t)
 (use-package which-key :ensure t)
 (use-package evil :ensure t)
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
-(use-package evil-magit :ensure t)
 (use-package projectile :ensure t)
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)
-
 (setq nlinum-format "%d ")
 (setq projectile-completion-system 'ivy)
 (global-nlinum-mode t)
@@ -80,8 +77,6 @@
 (evil-mode 1)
 (ivy-mode 1)
 (which-key-mode)
-
-
 (setq which-key-idle-delay 0)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 (evil-leader/set-key
@@ -91,5 +86,4 @@
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
   "tl" 'nlinum-mode
-  "gs" 'magit-status
   "k" 'kill-buffer)

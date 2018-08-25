@@ -51,8 +51,8 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
+    ;; Projects
     "p" '(:ignore t :which-key "Projects")
-    "g" '(:ignore t :which-key "Git")
     "t" '(:ignore t :which-key "Toggles")
     ))
 
@@ -63,7 +63,6 @@
 (use-package evil :ensure t)
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
-(use-package evil-magit :ensure t)
 (use-package projectile :ensure t)
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
@@ -91,5 +90,4 @@
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
   "tl" 'nlinum-mode
-  "gs" 'magit-status
   "k" 'kill-buffer)
