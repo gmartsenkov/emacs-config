@@ -1,0 +1,1 @@
+("~/Development/Ruby/Work/fitbid-api/" "~/Development/Elixir/dictionary/")
