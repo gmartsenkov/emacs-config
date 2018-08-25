@@ -83,7 +83,6 @@
 
 (use-package evil-magit :ensure t)
 
-(setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
 (setq which-key-idle-delay 0)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 (evil-leader/set-key
