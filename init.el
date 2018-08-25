@@ -57,13 +57,13 @@
     ))
 
 (use-package company :ensure t)
+(use-package git :ensure t)
 (use-package magit :ensure t)
 (use-package nlinum :ensure t)
 (use-package which-key :ensure t)
 (use-package evil :ensure t)
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
-(use-package evil-magit :ensure t)
 (use-package projectile :ensure t)
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
@@ -81,6 +81,7 @@
 (ivy-mode 1)
 (which-key-mode)
 
+(use-package evil-magit :ensure t)
 
 (setq which-key-idle-delay 0)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
