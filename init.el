@@ -62,8 +62,7 @@
 (use-package company :ensure t)
 (use-package git :ensure t)
 (use-package magit :ensure t)
-(use-package diff-hl :ensure t)
-(use-package nlinum :ensure t)
+(use-package git-gutter :ensure t)
 (use-package which-key :ensure t)
 (use-package evil :ensure t)
 (use-package evil-leader :ensure t)
@@ -78,9 +77,10 @@
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)
 
-(setq nlinum-format "%d ")
+(global-display-line-numbers-mode t)
+(setq display-line-numbers "%4d \u2502 ")
+
 (setq projectile-completion-system 'ivy)
-(global-nlinum-mode t)
 (load-theme 'dracula t)
 (add-hook 'after-init-hook 'global-company-mode)
 (projectile-mode +1)
@@ -92,8 +92,8 @@
 
 (use-package evil-magit :ensure t)
 
-(global-diff-hl-mode t)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+(global-git-gutter-mode t)
+
 (add-to-list 'auto-mode-alist
              '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
 (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
@@ -105,6 +105,6 @@
   "b" 'switch-to-buffer
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
-  "tl" 'nlinum-mode
+  "tl" 'global-display-line-numbers-mode
   "gs" 'magit-status
   "k" 'kill-buffer)
