@@ -51,7 +51,6 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
-    "f" '(:ignore t :which-key "Files")
     "p" '(:ignore t :which-key "Projects")
     "g" '(:ignore t :which-key "Git")
     "t" '(:ignore t :which-key "Toggles")
@@ -66,11 +65,6 @@
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
 (use-package projectile :ensure t)
-
-;; RUBY
-(use-package enh-ruby-mode :ensure t)
-(use-package ruby-end :ensure t)
-;; ELIXIR
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)
@@ -89,14 +83,12 @@
 
 (use-package evil-magit :ensure t)
 
-(add-to-list 'auto-mode-alist
-             '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
 (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
 (setq which-key-idle-delay 0)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 (evil-leader/set-key
   "TAB" 'switch-to-buffer-preserve-window-point
-  "ff" 'find-file
+  "e" 'find-file
   "b" 'switch-to-buffer
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file

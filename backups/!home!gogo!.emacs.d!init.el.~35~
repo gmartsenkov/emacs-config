@@ -66,11 +66,7 @@
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
 (use-package projectile :ensure t)
-
-;; RUBY
 (use-package enh-ruby-mode :ensure t)
-(use-package ruby-end :ensure t)
-;; ELIXIR
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)

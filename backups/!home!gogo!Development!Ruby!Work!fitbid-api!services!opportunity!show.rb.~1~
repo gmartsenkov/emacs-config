@@ -1,0 +1,48 @@
+require "wisper"
+
+require_relative "../../repositories/opportunity"
+require_relative "../../repositories/user"
+
+module Fitbid
+  module Services
+    module Opportunity
+      class Show
+        include Wisper::Publisher
+
+        def initialize(id, user_id)
+          @id = id
+          @user_id = user_id
+        end
+
+        def call
+          return not_found unless opportunity
+          broadcast "fitbid:opportunity_show", opportunity
+        end
+
+        private
+
+        attr_reader :id, :user_id
+
+        def not_found
+          broadcast "fitbid:opportunity_not_found"
+        end
+
+        def opportunity
+          @_opportunity ||= opportunity_repo.by_id_and_team_member(id, team_member_id)
+        end
+
+        def team_member_id
+          user_repo.by_id(user_id).hierarchy_id
+        end
+
+        def user_repo
+          Fitbid::Repositories::User.new(Fitbid::Database.env)
+        end
+
+        def opportunity_repo
+          Fitbid::Repositories::Opportunity.new(Fitbid::Database.env)
+        end
+      end
+    end
+  end
+end
