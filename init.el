@@ -62,6 +62,7 @@
 (use-package company :ensure t)
 (use-package git :ensure t)
 (use-package magit :ensure t)
+(use-package diff-hl :ensure t)
 (use-package nlinum :ensure t)
 (use-package which-key :ensure t)
 (use-package evil :ensure t)
@@ -91,6 +92,8 @@
 
 (use-package evil-magit :ensure t)
 
+(global-diff-hl-mode t)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 (add-to-list 'auto-mode-alist
              '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
 (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
