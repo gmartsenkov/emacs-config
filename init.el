@@ -15,6 +15,8 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 (setq delete-old-versions -1 )		; delete excess backup versions silently
 (setq version-control t )		; use version control
 (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
