@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/Development/Ruby/Work/fitbid-api/" "~/Development/Elixir/dictionary/")
+("~/.emacs.d/" "~/Development/Ruby/Work/fitbid-api/" "~/Development/Ruby/Work/boomerang-api/" "~/Development/Ruby/Work/splice-api/")

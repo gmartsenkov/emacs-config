@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(evil which-key use-package general)))
+ '(package-selected-packages '(evil-magit evil which-key use-package general)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,6 +30,7 @@
 (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
 (setq default-fill-column 80)		; toggle wrapping text at the 80th character
 (setq initial-scratch-message "Welcome in Emacs") ; print a default message in the empty scratch buffer opened at startup
+(set-frame-font "Source Code Pro 13" nil t)
 
 (require 'package)
 (setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
@@ -68,19 +69,45 @@
 (use-package evil-leader :ensure t)
 (use-package ivy :ensure t)
 (use-package projectile :ensure t)
+(use-package telephone-line :ensure t)
+(use-package ace-window :ensure t)
 
 ;; RUBY
-(use-package enh-ruby-mode :ensure t)
 (use-package ruby-end :ensure t)
+(use-package rspec-mode :ensure t)
+(setq ruby-indent-level 2)
+
+(add-hook 'ruby-mode-hook
+  (function (lambda ()
+          (setq evil-shift-width ruby-indent-level))))
+
 ;; ELIXIR
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)
 
 (global-display-line-numbers-mode t)
-(setq display-line-numbers "%4d \u2502 ")
-
 (setq projectile-completion-system 'ivy)
+
+(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+      telephone-line-primary-right-separator 'telephone-line-cubed-right
+      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+(setq telephone-line-evil-use-short-tag t)
+
+(set-face-attribute 'telephone-line-evil-normal
+                    nil
+                    :background
+                    "#bd93f9")
+(set-face-attribute 'telephone-line-evil-insert
+                    nil
+                    :background
+                    "#50fa7b")
+(set-face-attribute 'telephone-line-evil-visual
+                    nil
+                    :background
+                    "#ffb86c")
+
 (load-theme 'dracula t)
 (add-hook 'after-init-hook 'global-company-mode)
 (projectile-mode +1)
@@ -89,22 +116,29 @@
 (evil-mode 1)
 (ivy-mode 1)
 (which-key-mode)
+(telephone-line-mode 1)
 
 (use-package evil-magit :ensure t)
 
 (global-git-gutter-mode t)
 
-(add-to-list 'auto-mode-alist
-             '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
 (setq which-key-idle-delay 0)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 (evil-leader/set-key
-  "TAB" 'switch-to-buffer-preserve-window-point
+  "TAB" 'switch-to-previous-buffer
   "ff" 'find-file
   "b" 'switch-to-buffer
+  "w" 'ace-window
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
   "tl" 'global-display-line-numbers-mode
   "gs" 'magit-status
+  "s" 'rspec-toggle-spec-and-target
   "k" 'kill-buffer)
