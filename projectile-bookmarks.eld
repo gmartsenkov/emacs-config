@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/Development/Ruby/Work/fitbid-api/" "~/Development/Ruby/Work/boomerang-api/" "~/Development/Ruby/Work/splice-api/")
+("~/.emacs.d/" "~/go/src/github.com/gmartsenkov/audit/" "~/Development/Ruby/Work/fitbid-api/" "~/Development/Ruby/Work/boomerang-api/" "~/Development/Ruby/Work/splice-api/")

@@ -1,3 +1,4 @@
+(setenv "ESHELL" (expand-file-name "~/bin/eshell"))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,12 +29,7 @@
 (setq coding-system-for-read 'utf-8 )	; use utf-8 by default
 (setq coding-system-for-write 'utf-8 )
 (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
-(setq default-fill-column 80)		; toggle wrapping text at the 80th character
-(setq initial-scratch-message "Welcome in Emacs") ; print a default message in the empty scratch buffer opened at startup
-(set-frame-font "Source Code Pro 13" nil t)
-
-(require 'package)
-(setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
+(setq default-fill-column 80)		; toggle wrapping te(setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
 ;; the following lines tell emacs where on the internet to look up
 ;; for new packages.
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
@@ -59,6 +55,9 @@
     "g" '(:ignore t :which-key "Git")
     "t" '(:ignore t :which-key "Toggles")
     ))
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GOPATH"))
 
 (use-package company :ensure t)
 (use-package git :ensure t)
@@ -71,11 +70,27 @@
 (use-package projectile :ensure t)
 (use-package telephone-line :ensure t)
 (use-package ace-window :ensure t)
+(use-package golden-ratio :ensure t)
+(use-package shell-pop :ensure t)
+(use-package exec-path-from-shell :ensure t)
+(use-package flycheck :ensure t)
 
 ;; RUBY
 (use-package ruby-end :ensure t)
 (use-package rspec-mode :ensure t)
 (setq ruby-indent-level 2)
+
+;; GO
+(use-package go-mode :ensure t)
+(use-package company-go :ensure t)
+(setq company-tooltip-limit 10) 
+(setq company-idle-delay .1) 
+(autoload 'go-mode "go-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-hook 'go-mode-hook (lambda ()
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
+
 
 (add-hook 'ruby-mode-hook
   (function (lambda ()
@@ -111,12 +126,14 @@
 (load-theme 'dracula t)
 (add-hook 'after-init-hook 'global-company-mode)
 (projectile-mode +1)
+(global-flycheck-mode)
 (global-evil-leader-mode)
 (evil-leader/set-leader "SPC")
 (evil-mode 1)
 (ivy-mode 1)
 (which-key-mode)
 (telephone-line-mode 1)
+(golden-ratio-mode 1)
 
 (use-package evil-magit :ensure t)
 
@@ -128,17 +145,22 @@ Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
+(add-to-list 'golden-ratio-extra-commands 'ace-window)
 (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
 (setq which-key-idle-delay 0)
+(setq auto-revert-check-vc-info t)
 (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 (evil-leader/set-key
+  "." 'split-window-vertically
+  "," 'split-window-horizontally
   "TAB" 'switch-to-previous-buffer
   "ff" 'find-file
   "b" 'switch-to-buffer
+  "k" 'ace-delete-window
   "w" 'ace-window
   "pp" 'projectile-switch-project
   "pf" 'projectile-find-file
   "tl" 'global-display-line-numbers-mode
   "gs" 'magit-status
   "s" 'rspec-toggle-spec-and-target
-  "k" 'kill-buffer)
+)

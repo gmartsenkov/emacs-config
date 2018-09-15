@@ -1,0 +1,29 @@
+ls
+cd ..
+ls
+crap
+ls
+guard
+ls
+bundle
+bundle exec guard
+ls
+cd
+cd Development/Ruby/
+ls
+cd Work/
+ls
+cd fitbid-frontend/
+cd ..
+cd fitbid-api/
+ls
+bundle
+ls
+cd Development/Ruby/Work/fitbid-api/
+ls
+bundle
+cd Development/Ruby/Work/fitbid-api/
+bundle
+guard
+exit
+ls
