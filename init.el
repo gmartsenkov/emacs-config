@@ -1,4 +1,14 @@
-(setenv "ESHELL" (expand-file-name "~/bin/eshell"))
+;; Setup package.el
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -11,11 +21,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(set-face-attribute 'default nil
+                    :family "Office Code Pro"
+                    :height 110
+                    :weight 'normal
+                    :width 'normal) 
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
-
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq delete-old-versions -1 )		; delete excess backup versions silently
@@ -37,12 +53,7 @@
                          ("melpa"     . "https://melpa.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package) ; unless it is already installed
-  (package-refresh-contents) ; updage packages archive
-  (package-install 'use-package)) ; and install the most recent version of use-package
 
-(require 'use-package) ; guess what this one does too ?
 (use-package general :ensure t
   :config
   (general-define-key
@@ -55,6 +66,8 @@
     "g" '(:ignore t :which-key "Git")
     "t" '(:ignore t :which-key "Toggles")
     ))
+
+(use-package exec-path-from-shell :ensure t)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "GOPATH"))
@@ -71,8 +84,6 @@
 (use-package telephone-line :ensure t)
 (use-package ace-window :ensure t)
 (use-package golden-ratio :ensure t)
-(use-package shell-pop :ensure t)
-(use-package exec-path-from-shell :ensure t)
 (use-package flycheck :ensure t)
 
 ;; RUBY
@@ -88,6 +99,9 @@
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-hook 'go-mode-hook (lambda ()
+			  (setq tab-width 4)
+		          (setq indent-tabs-mode 1)
+			  (setq indent-tabs-mode 1)
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
 
@@ -101,6 +115,21 @@
 (use-package alchemist :ensure t)
 (use-package dracula-theme :ensure t)
 
+;; RUST
+(use-package rust-mode :ensure t)
+(use-package flycheck-rust :ensure t)
+(use-package racer :ensure t)
+(setq rust-format-on-save t)
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+
+;; OTHER
 (global-display-line-numbers-mode t)
 (setq projectile-completion-system 'ivy)
 
@@ -164,3 +193,4 @@ Repeated invocations toggle between the two most recently open buffers."
   "gs" 'magit-status
   "s" 'rspec-toggle-spec-and-target
 )
+

@@ -10,9 +10,7 @@
 ;;; Generated autoloads from git-gutter.el
 
 (autoload 'git-gutter:linum-setup "git-gutter" "\
-Setup for linum-mode.
-
-\(fn)" nil nil)
+Setup for linum-mode." nil nil)
 
 (autoload 'git-gutter-mode "git-gutter" "\
 Git-Gutter mode
@@ -47,14 +45,10 @@ See `git-gutter-mode' for more information on Git-Gutter mode.
 \(fn &optional ARG)" t nil)
 
 (autoload 'git-gutter "git-gutter" "\
-Show diff information in gutter
-
-\(fn)" t nil)
+Show diff information in gutter" t nil)
 
 (autoload 'git-gutter:toggle "git-gutter" "\
-Toggle to show diff information.
-
-\(fn)" t nil)
+Toggle to show diff information." t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "git-gutter" '("git-gutter")))
 

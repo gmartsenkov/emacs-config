@@ -119,9 +119,7 @@ Show the IEx buffer if an IEx process is already run.
 (autoload 'alchemist-iex-project-run "alchemist-iex" "\
 Start an IEx process with mix 'iex -S mix' in the
 context of an Elixir project.
-Show the IEx buffer if an IEx process is already run.
-
-\(fn)" t nil)
+Show the IEx buffer if an IEx process is already run." t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "alchemist-iex" '("alchemist-iex-" "inferior-elixir")))
 
@@ -178,9 +176,7 @@ Show the IEx buffer if an IEx process is already run.
 ;;; Generated autoloads from alchemist-phoenix.el
 
 (autoload 'alchemist-phoenix-project-p "alchemist-phoenix" "\
-Return non-nil if `default-directory' is inside a Phoenix project.
-
-\(fn)" nil nil)
+Return non-nil if `default-directory' is inside a Phoenix project." nil nil)
 
 (autoload 'alchemist-phoenix-mode "alchemist-phoenix" "\
 Minor mode for Elixir Phoenix web framework projects.
@@ -196,10 +192,7 @@ The following commands are available:
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'alchemist-phoenix-enable-mode "alchemist-phoenix" "\
-
-
-\(fn)" nil nil)
+(autoload 'alchemist-phoenix-enable-mode "alchemist-phoenix" nil nil nil)
 
 (dolist (hook '(alchemist-mode-hook)) (add-hook hook 'alchemist-phoenix-enable-mode))
 
@@ -220,9 +213,7 @@ The following commands are available:
 ;;; Generated autoloads from alchemist-refcard.el
 
 (autoload 'alchemist-refcard "alchemist-refcard" "\
-Generate an Alchemist refcard of all the features.
-
-\(fn)" t nil)
+Generate an Alchemist refcard of all the features." t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "alchemist-refcard" '("alchemist-refcard-")))
 
@@ -270,10 +261,7 @@ The following commands are available:
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'alchemist-test-enable-mode "alchemist-test-mode" "\
-
-
-\(fn)" nil nil)
+(autoload 'alchemist-test-enable-mode "alchemist-test-mode" nil nil nil)
 
 (dolist (hook '(alchemist-mode-hook)) (add-hook hook 'alchemist-test-enable-mode))
 

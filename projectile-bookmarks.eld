@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/go/src/github.com/gmartsenkov/audit/" "~/Development/Ruby/Work/fitbid-api/" "~/Development/Ruby/Work/boomerang-api/" "~/Development/Ruby/Work/splice-api/")
+("~/Development/lighthouse/" "~/Development/coast-api/" "~/.emacs.d/" "~/Development/splice-api/" "~/Development/bonsai-api/" "~/Development/Rust/guessing_game/" "~/.go/src/github.com/gmartsenkov/stash/")
