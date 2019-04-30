@@ -21,11 +21,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(set-face-attribute 'default nil
-                    :family "Office Code Pro"
-                    :height 110
-                    :weight 'normal
-                    :width 'normal) 
+(set-frame-font "DejaVu Sans Mono-12")
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -33,6 +29,7 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (setq make-backup-files nil)
+(setq rspec-primary-source-dirs '("app"))
 (setq auto-save-default nil)
 (setq delete-old-versions -1 )		; delete excess backup versions silently
 (setq version-control t )		; use version control

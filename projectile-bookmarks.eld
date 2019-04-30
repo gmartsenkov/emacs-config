@@ -1,1 +1,1 @@
-("~/Development/lighthouse/" "~/Development/coast-api/" "~/.emacs.d/" "~/Development/splice-api/" "~/Development/bonsai-api/" "~/Development/Rust/guessing_game/" "~/.go/src/github.com/gmartsenkov/stash/")
+("~/Development/coast-api/" "~/.emacs.d/")
